@@ -4,11 +4,16 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Put,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -16,8 +21,9 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('/create_user')
-  onCreateUser(@Body('id') id: number, @Body('name') name: string): User[] {
-    return this.userService.onCreateUser(id, name);
+  @UsePipes(ValidationPipe)
+  onCreateUser(@Body() createUserDto: CreateUserDto): User[] {
+    return this.userService.onCreateUser(createUserDto);
   }
 
   @Get('/user_all')
@@ -31,8 +37,12 @@ export class UserController {
   }
 
   @Patch('/user/:id')
-  setUser(@Param('id') id: number, @Body('name') name: string): User {
-    return this.userService.setUser(id, name);
+  @UsePipes(ValidationPipe)
+  setUser(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ): User {
+    return this.userService.setUser(id, updateUserDto);
   }
 
   @Put('/user/update')

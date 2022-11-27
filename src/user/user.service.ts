@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 const users: User[] = [
   { id: 1, name: '유저1' },
   { id: 2, name: '유저2' },
@@ -6,8 +8,8 @@ const users: User[] = [
 ];
 @Injectable()
 export class UserService {
-  onCreateUser(id: number, name: string): User[] {
-    return users.concat({ id, name });
+  onCreateUser(createUserDto: CreateUserDto): User[] {
+    return users.concat({ id: createUserDto.id, name: createUserDto.name });
   }
 
   getUserAll(): User[] {
@@ -18,9 +20,9 @@ export class UserService {
     return users.find((data) => data.id == id);
   }
 
-  setUser(id: number, name: string): User {
+  setUser(id: number, updateUserDto: UpdateUserDto): User {
     return users.find((data) => {
-      if (data.id == id) return (data.name = name);
+      if (data.id == id) return (data.name = updateUserDto.name);
     });
   }
 
