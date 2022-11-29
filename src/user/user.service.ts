@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserRepository } from 'src/repository/user.repository';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 const users: User[] = [
@@ -8,6 +10,9 @@ const users: User[] = [
 ];
 @Injectable()
 export class UserService {
+  constructor(
+    @InjectRepository(UserRepository) private userRepository: UserRepository,
+  ) {}
   onCreateUser(createUserDto: CreateUserDto): User[] {
     return users.concat({ id: createUserDto.id, name: createUserDto.name });
   }
