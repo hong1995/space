@@ -1,4 +1,9 @@
-import { ForbiddenException, NotFoundException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  HttpException,
+  HttpStatus,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { UpdateUserDto } from 'src/user/dto/update-user.dto';
 import { EntityRepository, Repository } from 'typeorm';
@@ -8,16 +13,25 @@ export class UserRepository extends Repository<User> {
   //유저 생성
   async onCreate(createUserDto: CreateUserDto): Promise<boolean> {
     const { user_id, password, name, age } = createUserDto;
+    try {
+      const user = await this.save({
+        user_id,
+        password,
+        salt: '임시',
+        name,
+        age,
+      });
 
-    const user = await this.save({
-      user_id,
-      password,
-      salt: '임시',
-      name,
-      age,
-    });
-
-    return user ? true : false;
+      return user ? true : false;
+    } catch (error) {
+      throw new HttpException(
+        {
+          message: 'SQL에러',
+          error: error.sqlMessage,
+        },
+        HttpStatus.FORBIDDEN,
+      );
+    }
   }
 
   //모든 유저 조회
