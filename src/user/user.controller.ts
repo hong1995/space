@@ -26,7 +26,6 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   /**
-   * @author Ryan
    * @description @Body 방식 - @Body 어노테이션 여러개를 통해 요청 객체를 접근할 수 있습니다.
    *
    * CreateUserDto를 사용해서 @Body 전달 방식을 변경합니다.
@@ -41,7 +40,6 @@ export class UserController {
   }
 
   /**
-   * @author Ryan
    * @description 전체 유저 조회
    */
   @Get('/user_all')
@@ -50,7 +48,6 @@ export class UserController {
   }
 
   /**
-   * @author Ryan
    * @description @Query 방식 - 단일 유저 조회
    *
    * @param id 유저 고유 아이디
@@ -61,7 +58,6 @@ export class UserController {
   }
 
   /**
-   * @author Ryan
    * @description @Param 방식 - 단일 유저 조회
    *
    * @param id 유저 고유 아이디
@@ -72,7 +68,6 @@ export class UserController {
   }
 
   /**
-   * @author Ryan
    * @description @Param & @Body 혼합 방식 - 단일 유저 수정
    *
    * @param id 유저 고유 아이디
@@ -88,7 +83,6 @@ export class UserController {
   }
 
   /**
-   * @author Ryan
    * @description @Body 방식 - 전체 유저 수정
    *
    * @param updateUserDto 유저 정보
@@ -100,7 +94,6 @@ export class UserController {
   }
 
   /**
-   * @author Ryan
    * @description @Query 방식 - 단일 유저 삭제
    *
    * @param id 유저 고유 아이디

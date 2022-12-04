@@ -11,7 +11,6 @@ export class UserService {
   ) {}
 
   /**
-   * @author Ryan
    * @description 유저 생성
    *
    * @param createUserDto 유저 데이터
@@ -23,7 +22,6 @@ export class UserService {
   }
 
   /**
-   * @author Ryan
    * @description 모든 유저 조회
    *
    * @returns {User[]} users
@@ -33,7 +31,6 @@ export class UserService {
   }
 
   /**
-   * @author Ryan
    * @description 단일 유저 조회
    *
    * @param id 유저 고유 아이디
@@ -44,7 +41,6 @@ export class UserService {
   }
 
   /**
-   * @author Ryan
    * @description 단일 유저 수정
    *
    * @param id 유저 고유 아이디
@@ -57,7 +53,6 @@ export class UserService {
   }
 
   /**
-   * @author Ryan
    * @description 전체 유저 수정
    *
    * @param updateUserDto 유저 정보
@@ -69,7 +64,6 @@ export class UserService {
   }
 
   /**
-   * @author Ryan
    * @description 유저 삭제
    *
    * @param id

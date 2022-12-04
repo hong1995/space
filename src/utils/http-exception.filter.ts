@@ -24,7 +24,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
     /**
-     * @author Ryan
      * @description HttpException에서 전송한 데이터를 추출할 때 사용
      */
     const res: any = exception.getResponse();
